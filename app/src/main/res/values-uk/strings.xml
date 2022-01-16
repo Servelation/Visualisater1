@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Visualisater</string>
+    <string name="main_new_graf">Створити новий граф</string>
+    <string name="main_load_graf">Завантажити граф</string>
+    <string name="main_settings">Налаштування</string>
+    <string name="main_exit">Вихiд</string>
+</resources>
