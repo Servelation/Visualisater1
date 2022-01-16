@@ -1,5 +1,6 @@
 package com.nechay.visualiser;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +22,15 @@ public class NewGraphActivity extends Activity {
     private TableLayout table;
     private static int countOfRows = 3;
     private Intent setAct;
-    //TextView[] numberRow = new TextView[17];
-    //TextView[] numberColumn = new TextView[17];
+    private TextView graphTextNeor;
+    private TextView graphTextOr;
+    private boolean sl = false;
+    private Thread threadChecks;
     private void expand(){
         if(countOfRows==12){
             return;
         }
+        sl=true;
         rows[countOfRows - 1].removeAllViews();
         //Добавляем новую строку
         rows[countOfRows] = new TableRow(NewGraphActivity.this);
@@ -67,12 +71,13 @@ public class NewGraphActivity extends Activity {
             matrix[i - 1][countOfRows - 2] = chk;
         }
         countOfRows++;
+        sl=false;
     }
-
     private void reduce(){
         if(countOfRows ==3){
             return;
         }
+        sl=true;
         //Удаляем из интерфейса минус и плюс
         rows[countOfRows - 1].removeAllViews();
         //удаляем чекбоксы
@@ -94,9 +99,14 @@ public class NewGraphActivity extends Activity {
         rows[countOfRows-2].addView(btnPlus);
         rows[0].removeViewAt(countOfRows-2);
         countOfRows--;
+        sl=false;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(threadChecks!=null){
+            threadChecks.interrupt();
+        }
         super.onCreate(savedInstanceState);
         // Set fullscreen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -114,6 +124,8 @@ public class NewGraphActivity extends Activity {
         btnPlus = (Button) findViewById(R.id.btnPlus);
         btnMinus = (Button) findViewById(R.id.btnMinus);
         matrix[0][0] = (CheckBox) findViewById(R.id.checkBox);
+        graphTextNeor= (TextView) findViewById(R.id.graph_text_neor);
+        graphTextOr= (TextView) findViewById(R.id.graph_text_or);
 
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,19 +148,44 @@ public class NewGraphActivity extends Activity {
                 startActivity(setAct);
             }
         });
+        boolean run = true;
+        @SuppressLint("ResourceType") Runnable r = () ->{
+            boolean ort;
+            try {
+                while (run) {
+                    ort = false;
+                    for (int i = 0; i < countOfRows - 2; i++) {
+                        for (int j = 0; j < countOfRows - 2; j++) {
+                            if (!sl) {
+                                if (matrix[i][j].isChecked() != matrix[j][i].isChecked() && i != j) {
+                                    ort = true;
+                                }
+                            }
+                        }
+                    }
+                    if(ort){
+                        graphTextOr.setAlpha(1.0f);
+                        graphTextNeor.setAlpha(0.0f);
+                    }else{
+                        graphTextOr.setAlpha(0.0f);
+                        graphTextNeor.setAlpha(1.0f);
+                    }
+
+                }
+            }catch(Exception e){
+                //прервали поток
+            }
+        };
+        threadChecks = new Thread(r,"MyThread");
+        threadChecks.start();
     }
 
     @Override
-    protected void onPause() {
-
-        super.onPause();
+    protected void onDestroy() {
+        setCountOfRows(3);
+        super.onDestroy();
     }
 
-    @Override
-    protected void onResume() {
-
-        super.onResume();
-    }
     public static boolean[][] convertM(){
         boolean[][] bmas = new boolean[countOfRows-2][countOfRows-2];
         for(int i=0;i<countOfRows-2;i++){
@@ -162,8 +199,8 @@ public class NewGraphActivity extends Activity {
     public static int  getCountOfRows() {
         return countOfRows;
     }
-
     public static void  setCountOfRows(int c) {
         countOfRows = c;
     }
+
 }

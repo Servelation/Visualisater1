@@ -13,8 +13,6 @@ public class Vertex {
     private Paint paintOuter = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint paintText = new Paint(Paint.SUBPIXEL_TEXT_FLAG);
     private ArrayList<Edge> edges = new ArrayList<Edge>();
-
-
     public void update(float x, float y){
         this.x = x;
         this.y = y;
@@ -52,12 +50,7 @@ public class Vertex {
         paintText.setTextSize(80);
         paintText.setColor(Color.rgb(0,0,0));
     }
-    public void setX(float x) {
-        this.x = x;
-    }
-    public void setY(float y) {
-        this.y = y;
-    }
+
     public void setNumber(int number) {
         this.number = number;
     }
@@ -70,6 +63,5 @@ public class Vertex {
     public float getY() {
         return y;
     }
-    public void setEdges(ArrayList<Edge> edges) {this.edges = edges; }
     public ArrayList<Edge> getEdges() { return edges; }
 }

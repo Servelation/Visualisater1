@@ -22,13 +22,13 @@
             android:text="@string/main_new_graf"
             android:layout_marginTop="50dp" />
 
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="200dp"
-            android:id="@+id/main_load_graf"
-            style="@style/Butt"
-            android:text="@string/main_load_graf"
-            android:layout_marginTop="20dp" />
+<!--        <Button-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:id="@+id/main_load_graf"-->
+<!--            style="@style/Butt"-->
+<!--            android:text="@string/main_load_graf"-->
+<!--            android:layout_marginTop="20dp" />-->
 
         <Button
             android:layout_height="wrap_content"
@@ -37,7 +37,13 @@
             style="@style/Butt"
             android:text="@string/main_settings"
             android:layout_marginTop="20dp" />
-
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:id="@+id/main_description"
+            style="@style/Butt"
+            android:text="@string/main_description"
+            android:layout_marginTop="20dp" />
         <Button
             android:layout_height="wrap_content"
             android:layout_width="200dp"

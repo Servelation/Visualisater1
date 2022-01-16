@@ -8,7 +8,7 @@ public class Graph {
     private boolean orint;
     private ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
     private ArrayList<Edge> edges = new ArrayList<Edge>();
-
+    private Graph ostov;
     public Graph() {
         setSize(1);
         matrix = new boolean[][]{{false}};
@@ -16,7 +16,6 @@ public class Graph {
         vertexList.add(v);
 
     }
-
     public Graph(int size, boolean[][] m) {
         this.size = size;
         this.matrix = m;
@@ -81,44 +80,65 @@ public class Graph {
         }
         return false;
     }
-
+    public String toString(){
+        String str ="";
+        for(boolean[] bstr: matrix){
+            for(boolean b:bstr){
+                str+=b?"1":"0";
+            }
+            str+=";\n";
+        }
+        return str;
+    }
     public int getSize() {
         return size;
     }
-
     public void setSize(int size) {
         this.size = size;
     }
-
     public boolean[][] getZnach() {
         return matrix;
     }
-
     public void setZnach(boolean[][] znach) {
         this.matrix = znach;
     }
-
     public boolean isOrint() {
         return orint;
     }
-
     public void setOrint(boolean orint) {
         this.orint = orint;
     }
-
     public ArrayList<Vertex> getVertexList() {
         return vertexList;
     }
-
     public void setVertexList(ArrayList<Vertex> versh) {
         this.vertexList = versh;
     }
-
     public ArrayList<Edge> getEdges() {
         return edges;
     }
-
     public void setEdges(ArrayList<Edge> edges) {
         this.edges = edges;
+    }
+    public boolean[][] getMatrix() {
+        return matrix;
+    }
+    public void setMatrix(boolean[][] matrix) {
+        this.matrix = matrix;
+    }
+    public Edge findEdge(int i, int j){
+        for(Edge e: getEdges()){
+            if( e.getVertex1().getNumber()-1==i &&
+                    e.getVertex2().getNumber()-1==j){
+                return e;
+            }
+        }
+        return null;
+    }
+    public Graph getOstov() {
+        return ostov;
+    }
+    public void setOstov(Graph ostov) {
+        this.ostov = ostov;
     }
 }

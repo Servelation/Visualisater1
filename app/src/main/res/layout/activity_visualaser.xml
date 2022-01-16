@@ -5,5 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VisualaserActivity">
+    <FrameLayout
+        android:id="@+id/frame_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="260dp"
+        android:layout_marginRight="7dp">
+
+    </FrameLayout>
+
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:minHeight="50dp">
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="100dp"
+                android:minWidth="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                style="@style/EditText"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:inputType="number"
+            />
+
+            <Button
+                android:id="@+id/setButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Butt"
+                android:text="@string/visualaser_set" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="100dp" >
+            <Button
+                android:id="@+id/kruskalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                style="@style/Butt"
+                android:text="@string/visualaser_kruskal" />
+            <Button
+                android:id="@+id/returnButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                style="@style/Butt"
+                android:text="@string/visualaser_return" />
+<!--            <Button-->
+<!--                android:id="@+id/saveButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Butt"-->
+<!--                android:text="@string/visualaser_save" />-->
+        </TableRow>
+    </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

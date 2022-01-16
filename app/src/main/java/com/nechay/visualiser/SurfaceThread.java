@@ -4,11 +4,9 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class SurfaceThread extends Thread {
-
     private boolean running;
     private GraphSurfaceView graphSurface;
     private SurfaceHolder surfaceHolder;
-
     public SurfaceThread(GraphSurfaceView graphSurface, SurfaceHolder surfaceHolder)  {
         this.graphSurface= graphSurface;
         this.surfaceHolder= surfaceHolder;
